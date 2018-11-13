@@ -2,19 +2,25 @@
 
 int instr_trans(char *op, char *args, char* mcode)
 {
-	// check syntax 
+
+	char *src;
+	char *dest;
+	char temp[256];
 	if(!is_valid(op, args)){
 		printf("Error: %s %s is not valid\n", op, args);
 		return 0;
 	}
 
+//	char temp[100];	
+//	strcpy(mcode,"AB CD EF");
+	
+  //  char *src;
+//	char *dest;
+	strcpy(temp,args);
+	src=strtok(temp,",");
+	dest=strtok(NULL,"\n");
 
-	strcpy(mcode, "AB CD EF");
-    char *src;
-	char *dest;
 
-	src = strtok(args,",");
-	dest = strtok(NULL,"\n");
 	
 	if(src[0]=='%'&&dest[0]=='%')
 		strcpy(mcode,"89");
@@ -32,15 +38,15 @@ int instr_trans(char *op, char *args, char* mcode)
 		else if(strcmp(dest,"%ecx"))
 			strcpy(mcode,"b9");
 		else if(strcmp(dest,"%edx"))
-			strcpy(mcdoe,"ba");
+			strcpy(mcode,"ba");
 		else if(strcmp(dest,"%ebx"))
 			strcpy(mcode,"bb");
 		else if(strcmp(dest,"%esp"))
 			strcpy(mcode,"bc");
 		else if(strcmp(dest,"%ebp"))
 			strcpy(mcode,"bd");
-		else if(strmcp(dest,"%esi"))
-			strcpy(mcode,"%edi"))
+		else if(strcmp(dest,"%esi"))
+			strcpy(mcode,"bf");
 
 	}
 
